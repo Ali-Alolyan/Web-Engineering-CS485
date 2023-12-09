@@ -1,0 +1,50 @@
+> show dbs
+> show databases
+
+// to create db & move between db
+> use blog
+// like pwd
+> db
+> use admin
+
+// to delete db go to it
+> use test
+> db.dropDatabase()
+
+> show collections
+
+> db.createCollection("users")
+// db.collectionName.operation({})
+> db.users.insertOne({Name: "ali", age: 30})
+> db.users.dorp()
+
+> db.users.insertOne({Name: "ali", age: 30})
+> db.users.insertMany([{}, {}, {}])
+> db.users.find({age: 15})
+> db.users.find({})
+> db.users.find({}).pretty()
+// 1 show 0 hide
+> db.users.find({}, {name:1, _id:0})
+> db.users.updateOne({name:"ali"}, {$set:{age: 24}})
+> db.users.updateMany({name:"ali"}, {$set:{age: 20}})
+> db.users.deletOne({name:"ali"})
+> db.users.deletMany({name:"ali"})
+
+> db.users.updateMany({name : "mohammed"},{$unset:  { city: " " }} )
+
+## Aggregation
+> db.users.aggregate([{$count: "numberOfUsers}])
+// 1 up to down -1 down to up
+> db.users.aggregate([{$sort: {name:1}}])
+> db.users.aggregate([{$limit: 3}])
+> db.users.aggregate([{$addFields: {salury:{$sum:"$monthSal"}}}])
+
+## Relations
+# One to One
+> add the _id to ObjectId()
+
+# One to Many 
+> add the _id to userId:ObjectId()
+
+# Many to Many
+> create a new fields userId:ObjectId() , folowingId:ObjectId()

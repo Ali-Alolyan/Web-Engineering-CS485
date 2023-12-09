@@ -1,0 +1,13 @@
+MangoDB Command:
+
+// To open MangoDB
+> mongo
+
+// To run MangoDB
+> brew services start mongodb-community@6.0
+
+// To stop MangoDB
+> brew services stop mongodb-community@6.0
+
+// To run MangoDB manually as a background process
+> mongod --config /opt/homebrew/etc/mongod.conf --fork

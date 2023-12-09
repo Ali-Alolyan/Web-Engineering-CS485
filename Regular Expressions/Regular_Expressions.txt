@@ -1,0 +1,50 @@
+Regular Expressions Types:
+
+    1- Literal Characters --> E. /and/g => all and in the page
+    2- Metacharacters --> () | [] {} ? + * $ ^ . E.
+        a. Wildcard == . -> E. /6.00/ => 6.00, 6600, 6j00
+        b. Escaping == \ -> E. /6\.00/ => 6.00
+        c. Slash == / -> E. /\//g be carfull when use it
+        d. Character Sets ==  [] -> E. /Mohamm[ae]d/ => Mohammad, Mohammed
+            1- just these character is work like metacharacter in Sets [- ^ /] to be literal character [/- /^ //]
+            2- Character Set Shortcuts: {\d == [0-9]}, {\w == [A-Za-z0-9_]}, {\s == [\t\r\n]}, {\D == [^0-9]}, {\W == [^A-Za-z0-9_]}, {\S == [^\t\r\n]}
+                E. Visa Card /\d\d\d\d-\d\d\d\d-\d\d\d\d-\d\d\d\d/ => 3913-3424-2567-2356
+        e. Ranges == - -> E. /[0-9]/ => 0, 8 , ...  E. /[0-9][0-9]/ => 00, 35, ...
+        f. Negative character == ^ -> E. /[^a-z]/ => $, , 2
+        g. Repetition:
+            1. + == one or more -> E. /plays+/ => plays, playsssss
+            2. * == zero or more -> E. /plays* / => play, plays, playsssss
+            3. ? == zero or one -> E. /plays? / => play, plays
+            4. {n} == n time -> E. /plays{5} / => playsssss
+            5. {n,m} == at min n at max m -> E. /plays{3,5} / => playsss, playsssss
+        h. Groping == () -> E. /(/+d{3})(/d{9})/ => +966597113400
+            1- Replace: $1 = +966 , $2 = 597113400
+        i. Alteration == | -> is or E. /(student (name|age|number))/ => student name, student age, student number
+            1- Replace: $1 = student name, student age, student number , $2 = name, age, numbe
+        j. Conditional Regular Expressions:
+            1. ?= -> E.  /(student (?=name|age|number))/ => student , student , student
+            2. ?! -> E.  /(Java(?!Script))/ => Java
+
+Regex in JavaScript:
+    Methods:
+        1. Test
+            const myString = 'I Love JavaScript'
+            const regex = /JavaScript/
+            console.log(regex.test(myString))
+
+        2. Replace
+            const myString = 'I Love JavaScript'
+            const regex = /JavaScript/
+            let newString = myString.replace(regex, 'Kotlin')
+            console.log(newString)
+
+        3. Search
+            const myString = 'I Love JavaScript'
+            const regex = myString.search(/JavaScript/)
+            console.log(regex)
+
+        4. Match
+            const str = 'I Love JavaScript and Kotlin and Flutter and Java'
+            const regex = str.match(/and/g)
+            console.log(regex)
+            console.log(regex.length)
